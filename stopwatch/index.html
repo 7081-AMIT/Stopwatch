@@ -1,0 +1,192 @@
+
+<!-- HTml -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+ 
+    <title>Stopwatch || Calender</title>
+    <link rel="stylesheet" href="style.CSS">
+    
+</head>
+<body>
+
+
+    <div id="container">
+        <a href="calender/index2.html">Calender</a>
+
+
+
+
+
+        <div class="calender">
+
+            <span class="day-number">00</span>
+          
+            <span class="month-name">Month</span>
+            <!-- <span class="day-name">day</span> -->
+         
+            <span class="year">year</span>
+            
+
+        </div>
+        <div id="time">
+            <span class="digit " id="hr">00</span>
+            <span class="txt">Hr</span>
+            <span class="digit " id="min">00</span>
+            <span class="txt">min</span>
+            <span class="digit " id="sec">00</span>
+            <span class="txt">sec</span>
+            <span class="digit " id="count">00</span>
+
+            
+            
+         
+
+        </div>
+       
+
+        <div class="container1">
+            <div class="calender" data-calender></div>
+        </div>
+        <div id="btn-container">
+
+            <button class="btn" id="start" onclick="start()">Start</button>
+            <button class="btn" id="stop" onclick="stop()">Stop</button>
+            <button class="btn" id="reset" onclick="reset()">Reset</button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- Script -->
+
+
+    <script>
+
+
+
+
+
+
+
+
+
+
+
+var hr = 0;
+var min = 0;
+var sec = 0;
+var count = 0;
+
+
+
+
+var timer = false;
+
+function start(){
+    timer = true;
+    stopwatch();
+
+}
+
+function stop(){
+    timer = false;
+    
+}
+
+
+function reset(){
+    timer = false;
+    hr= 0;
+    min= 0;
+    sec =0;
+    count = 0;
+    document.getElementById("hr").innerHTML = "00";
+    document.getElementById("min").innerHTML = "00";
+    document.getElementById("sec").innerHTML = "00";
+    document.getElementById("count").innerHTML = "00";
+    
+}
+
+function stopwatch(){
+
+    if(timer == true){
+
+  
+    count = count + 1;
+    if(count == 100){
+        sec = sec +1;
+        count = 0;
+    }
+    if(sec == 60){
+        min = min +1;
+        sec = 0;
+    }
+    if( min == 60){
+        hr = hr+1;
+        min = 0;
+        sec = 0;
+    }
+
+
+    var hrString = hr;
+
+    var minString = min;
+
+    var secString = sec;
+
+    var countString = count;
+
+    if(hr < 10){
+        hrString = "0" + hrString;
+    }
+    if(min < 10){
+        minString = "0" + minString;
+    }
+
+    if(sec < 10){
+        secString = "0" + secString;
+    }
+
+    if(count < 10){
+        countString = "0" + countString;
+    }
+
+
+
+    document.getElementById("hr").innerHTML = hrString;
+    document.getElementById("min").innerHTML = minString;
+    document.getElementById("sec").innerHTML = secString;
+    document.getElementById("count").innerHTML = countString;
+
+
+    setTimeout("stopwatch()",10);
+
+}
+}
+var today=new Date();
+
+const dayNumber=today.getDate();
+const year=today.getFullYear();
+// const dayName=today.toLocaleString("default",{weekday:"long"});
+const monthName=today.toLocaleString("default",{month:"short"});
+
+
+// document.querySelector(".day-name").innerHTML=dayName;
+document.querySelector(".month-name").innerHTML=monthName;
+document.querySelector(".day-number").innerHTML=dayNumber;
+document.querySelector(".year").innerHTML=year;
+
+
+    </script>
+    
+</body>
+</html>
